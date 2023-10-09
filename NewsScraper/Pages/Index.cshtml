@@ -1,0 +1,97 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Top News Headers</h1>
+
+</div>
+
+@{
+    string[] urls = { "https://www.ynet.co.il/home/0,7340,L-8,00.html",
+    "https://www.n12.co.il/","https://13tv.co.il/","https://www.now14.co.il/","https://www.kan.org.il/lobby/news/"
+    };
+    string[] newsSite = { "Ynet", "N12", "13tv", "Now14", "Kan" };
+
+    string[] singelNodes = { "//h1[@class='slotTitle']", "//p//a", "//h3", "//div[@class='mainTitleRashiSmall']", "//div[@class='article__content-title']" };
+
+    string header = "";
+
+
+
+    void ScrapNews(string url, string singleNode)
+    {
+        try
+        {
+            HttpClient httpClient = new HttpClient();
+            var html = httpClient.GetStringAsync(url).Result;
+            var htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(html);
+            var headerElement = htmlDocument.DocumentNode.SelectSingleNode(singleNode);
+
+            header = headerElement.InnerText.Trim();
+        }
+        catch (Exception e)
+        {
+
+            <p>@e.ToString()</p>
+        }
+
+
+
+
+    }
+
+
+
+}
+<div class="container" dir="rtl">
+    @{
+
+
+        ScrapNews(urls[0], singelNodes[0]);
+        <div class="single-news">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVYAAACTCAMAAADiI8ECAAAAqFBMVEX////tHCSTlZfsAACQkpSOkJKjpabm5ueytLXQ0dLtEhyLjZDd3t/u7u/tFyDtDBjsABDwV1u8vb796enydnnsAAr5xMX73N397u7ycnX5y8z1m53zfYDzgoT+9vb60NH3sbPvR0zuNTv4uLntISn0jpDFxsfuKjHvPkPxYGT84OD2paf1lZfwUlbT1NXxaGudn6H4vb7vQkf3s7XxZGj0iYv3qqzvTFHIiYZRAAAV50lEQVR4nO1daUPqPNNGA4ittkVk3wRRUFzwHJX//8/ebF0yk6ZJac99js97fRGhTZsrk8nMZJI0Gv+PU3B1czhvX/zXb/GjcPF48FvN8/Om/1+/yc/BVafpNymnDH7F4vo8+H6YPR3X283ZZrM+Pt0+7D+Gi2qf8VfiouVLSquldTGZfm4IIf0o9LxAwPPCqE+/i54ePkZVPejvROs8i4poHczXlLwwOMuBFxFydnv/c6m9rJzW0V2XkHxGEwRhn/ya9iqow1+ITrNaWu+7pO8VUpqR2t33T1S1ldL6PCfEnlPJbJ+8L6uqzV+DCmmdvJLQkVOBkKzvq6vRX4HKaB2snQU1RUDO7qqr01+Aimid7EjxIFVA7E+S2Epo7XVPkNSU2PXP0bFV0PpVAamC2PefYhWcTuskjCohlSEk3zXU8T/AybSOT1SqAOT4I1yvE2ldeuVsqnyE5CcMXafR+lKtqAqQ25rq+gdxEq1dUj2pFNH6n1cEJ9Da21StAGJ45F83tcrTuqxDAcQgd/VV+U+gNK339SiAhNeXOmtdO8rSuq+XVcrrrNZ614yStE7rZvUfNwjK0foHWKW8jiup4cXb481Np3Pz+FYyjHR9dflIC+AlXFveU4rW2jWA5NVKD1xQ1hgerzSMPLZ9v9VqcrR8//Boy0tcwGW7lRTASmh2LnOLeLtJcFBYPW920p8u827//WdYpbw+FFe848s6N/02+OnykEzUJ/XzDxr2c3kS2RNqCS3/oGfmPHkT+FR6V4rWuf5hkz/FKuW1MPLy5me6mlLdx1YLVk4SaymxOQVQtPwbfHkn72r0BrD5OXp/jlXK66Sg7u2sYBzS76/Oc2vZ9B8tSL1qmmhq+khibVmlza97XmDyAoIwRZG34NlcSgpmvBVa0/ft+LmVYtdp5UUt11gAKwMKfdENmVs13eVo8lj769sE47VRrANyTC/Nd4ODjQutcsC9PkfKTYW+H6a4wNoRl+GrWvokWh9MXEWqazQwXBusFTF8z+U1fLKntSV691VxDVsdU6EWBXB6FEVwCq3m4SoAV3/kX03UINXCcKVx2FJobXKyLm0qaNKvVgUgXk+gdREZFesavuA27/LwHVxpaC6jelVoPW/Zk6JTcAJvDgS9VULrkzkUSOAM30PeNFcfiKDJvPBQa+XSSl/YVtRy1aulBpAPTN0nB1rBEw2dWpAF50tydQYZqhf+7puKNUSzgLRe2ZPi6/2CaxdWaevkvIkR4JGmujOEn/Al82jtg+vGxm5gUAOgMm176zFHXLVGBHNbmQ9rKuXCt+MVWhCN28LZAAJf8lWfQYD4NzeYt7KlFVaB8+FjF5RBq11vcLs0/fObt4uLi6vHtoa5VL1etJutGNjlTQDXZwyL3SvyAd5yr1eu/b1b0fmzsSZaW3778eqa4uLtRuMztTTGwAVWAX6Wh0dMbBOXgiNYBn/5V3HuSghjeTl8QdWaw36CIHSntXWuhggQYc0DLu6AiskO9hTXB9g+utZxCAwWjVeCL3iXvnfDy3J0RYr+1JHWZgs67VgQsW9+CTlrniM5QyEVnYtvT+vGZkYQhUa0Y5EHPScL9ZKTnZVDa0szHiEjAVcWF2bxSJ24WtNqF2QNYeRZazlFQLVahBqjnNCrnla9D4X4eAMXIGHV60T4NI12tabVSlhp9cFtWjsfpgHkeg3Ze/TiqqUVR+04rgBrTUg+LMuHvAtAdYKax55WK82qYUzrv0LVurZoskjvE+hozfX3AR1NEIxGtOc5YoA0zXW2tO4scy3CL3DjF1auXle9ZGTVZNCDENDQmh/1QzNM5rJyzSLoieFBy5LWpe2UQACjWJroYASG9fsi741Dn+iiozWHDCxlKq2QLMh6/lOR1WFLa348FNUemKSakB9UFMXeGwOOj2kqeJ6rEBkejbQ+Ah1gsOGBusD9w45WQzgUAg3ZR2STQtVq2WSwwTgwrRojPwYY6QGt0BUwFAQnrpAWsKN1b9VNhVBtwb1TOMx7r+oFFk4xRzjXvBmiNScwxWGkFeoA3LMdaLOj1WaoToTqWb0XqWWoWq3bDLlwDZ20Gsgw0vpmrwPQxchUs6L12WUOG7KGXCioWru262TIAL8apBVVMAsjrYAJow6Aoo2UqxWtqB+bgIYWONxBobNuMxTIaWiMIlO2k5FWtRxz+2ATGPxsRaut0SppA0HnO7WTe0f1Z4ckGY0WQLSauDDRilSrOakIPBdqDBta7cz1BDCYCvxX6C7ZeK4xrTj3vV3o8GRgohW6WEbViniDjWBDq3GiCQPF8s8UYYdBLofhUBNvgbRqkqNSmGh9hEraVBC6HJoNNrSaJ5owQA5AY67cD2ImLl0h2KF3K/R3sjDRWuznK4CmAGhOG1pdF1/279T7lTANlOUPl66Aw1iQ1nwXq2GmFcYLjGKP/Szg6FrQ6pwiCEMpio8GO7Kd5xrTikwsSKtxoDHR6uIMNHBwEJhjFrTaRUKU2gOhys6CQdVqsVlOChwdrI3WguxiFJdRf7agVRPaKwBMw3jJqBFAuZOngfpBdbSirIvDoW3AAQYQgGFnQSuOlRQBpgFk/FcPjDrfbl0BBV2rolUzk+0Ed1qddYDJkYKq9cmtzaCRURmt0Gx1plU1c4tpdXQGRO1BGkZKHhx0HAtHDkFVtMJAS+20Wk8MZAC997SrA9XqWji03SqjFU26utKqEldMq7shcIa0QDIwwTjMi6NNjPysqmiFUwO101qUyKOnFZhR8ToOOIO4cxwOURCrMlrt0yi1AA8uptXdvjrDaRix0Q9Uq8NkjgCcWfh3aXWNCAiANIzYRQWq1Tb7IAGa0vlnaXU0gSTAkC3NCahaZ85NBrNm/hZanS2BValNLqASFeE/OMt35lw2tIj/kiELrtYspnVdhlWUhiGC1cCedfNca6UVGVgijdsWMN5VTOumFK1wVl9MrQAnydFz1ZRQmzvQert2AHpSbbTCYBOjFQ44n+6jYV20Que1KIJVgGJay7GKKGTT1tDsKuMW10QrSq4siLcWoDZphWkYzKsAAcMybnFdtKL4qc3i+HzURytIw2ApQYATV8+V0woi5HWFsYsmXQpQlyWAbdQILWK3WDqDaQVvVxutxiXchSim9Vh2czaQhjEOQ3ULJmfPtVZaXfIFi1GXl3WG0jDu+v3fyhem7QZyUZeXhVKwTjs0qJhWp6nRLMDU9ZCAQWxeouDaYgLIey3IailATREsDjBCETARZbl2RkFtESxsuBozDopQU7yVA4Ty1+oit1I7FNUWb8UW1kmmQDGtTmknCsD087tqcd2VKRclClRGK15B6EIjRD1zWRKqkfmlzhjYr/LIAIx6VdKKxqxTlGs9M68xCYpXNQWqtkyJtc284hjWSX5WPXkCEmoahjrfUq4T1JYnoNtNxIVHgFqyWlIWsuWobqdT4nwCaLZWSCtyCExrZopQSw5WSqtmEYVEqcZCK+arpBXNu5zgaNWSMZhAt4hCoJTnilfRVEkr0gKG9YhFqCO/NQPdUiqOUp6rZoPMCmnFa7xatiwi2GRjn3C8QO5GoWU8V5ts7FNoRXlYRZnu+ahj7UAGYd6+4bnb5JkAszgb1dKKPQLzDo8GFCyE4ThBuWKLSKCcYtFs1VAprTi/rSyvkFadlj7BITjz1s+aEst5rhbrsk6jFe3CwnZ1Mjtb11fa3807F0i4JqBlEZDNimKtzm+X8lwtVhGeSKtuM0zdPtgSFzfnvq/dwgR6wtrBr5zpnhDrUQBGSgmrTlFXS6t265em39GMOBeXbV9s4aYbj27g4jmduJ6+yzgKaZcpRGdWVEyrfj/Mpt/qsG31xCXXV5c37cy+hTrKUO5RqxMri6vL5B1P0QIcIN23nPjrNsGpmNbc7V+brTR7iB3vkP1NMz+DlyI0/UOn0znQFmr5sftWIqtHBRC0ws3vdLDZ/eJkWpFWtIBmnNdKfXLMQ0uq63KuZpZW9anldIDFXi2n09o4OPOq8xrMCYjx4rgTPAIGME9QynPV+AK10KrfGNcIjRYwC318Q7kxJgHYCrtUTEy/h2sNtLrzqknYMm8mnRgPZTJQMpSovnwZzzVnC9c6aHXWAzotYG6HWBuXizhJAIOzlNeWs4NrLbQWHz0CgYswbrOfTuiUio1IgGi2424asowcAmqhldpZLgKrjXSZtpdOn3zKkY7A4Cwz/uVsiFkXrY1rB4Ft6idpTQ2TTjyUF1dISan1cznVhzv8GGmFO4GYD3Y5tyO26bf10Zhrw3k7Ka3ltSsYsMpYFbl7YwMv0ZyQBoz0nN1zE7wdClVBs6UNGEgc8hommzJTdgYWHnJRIlsYbV+aQjlurOiAsZtsPVvFU4AXN0107l7KTdP3O+bprsum9ggIPzvElVjuwymBJ16V0CboPAOFqgTnhQn/b+fp1XYR6ovklMiUTn5KRKutO1QSPbDtp/eyG1t+C7TFvFSABPqcJXQAyhP8w7i+erzptA/CqT+0nY4mpUr6Udwr7tSEvZ22q4lZhVlT7gsyC0/O+8dRYtRCh4iViNqQvPHqp8B1rsTDStE91KqPsfwoeC5qICAr3HtLrMf82SqAwSHPLyBnmpiTw/6XMat3f7yWfx7Wh5J7ARyrGNyjLBE8tfBnomunXoOt9rAQ59kWDy5t+anYWDGjyZRolDkqPicr5uehR6xOeNLd6u4J6FvnR8Jq2NLROjKeEqstRaef/xnopjQNsNkPCG6QTbGwUx9ZVg0nkVJM0Qz3Z/zNciyVx0q6EsO9ouvvjEcdQ+yxP7KJI/O38YdJbE3e/5LPXsODLF/Mw++dDa/wppE7q/A0I4AlgXu49Uhck0jOKA5lISOyzZq/H0QTZuix4gaa1JkBQULyO56xHJBXWfA2NgV30tJ+Jq9AhxGwiz2AxdADI6TDyJlVeFIcwo6sZ/uPyXD4LEBlhxyXPSaXH4S8DxeTReOJ7PaDIXtlMl8OJdit3d4oBS/ugeuc7ufHM7RituT4cr98fu71np/p7c/8q7F40ioiT19ftLbTfp+sbr9Zc5O7IWP2NSLbB/5+8qnfZPPxbBiEvy1ODwQN4axXC1lt7KMgjPokwZoKp0f/7hZsh6iQfrpvTEgQsV8a5CxMLnxv3Pc9kgEX8ijg0Tb5VVawXiIv+xwWpPjus+LGPPvXC0My4QOyF5IdC32yiyds0o49PAYtnLBfIm1uKkexHshOtfSO7jZAgQZggJYFWYj1ySw1icce2AexpdFQicITmFjDZIAOGYG3SM6YyYoFGKVZCFk4NiT5sJRFst0peKA+fALOD5so5UGVvHMVGQaF4pfMtSzmxHliwSpqBaNhRC7TZ3Xk0TYW6eFHxlBtl835iOBcB1vvtWKb9ByTUkn+g/hG/XxrNHYRL5eJIo/Ps7Ps+e5UwVm6Y6V4xl42GV4GpYhKAVdyH6HejDjHAQLTdEAG+LQYIaRLKWCsJnzxB6U1GzoLYXAiiic/+nPBL1Biag28X424uWRzcFp5igpLwHuON/1StrhgvwwIKhpitC2gi8xGjeUncQ9be5GlybdWy6b945tQCWG0LlhvYjV56Ht8m6M98SS4mUL1Xvy/F7CKyiReqo7FKhyl7mtFhLi0vkfivsZTPwz5Izch/cB6eI+9BFvxOyN9CUoV09YTwh6vTdJL8VmgMZlSL5ET0N/lnJWLcPsrSAciLh/77W4d8LTPj224YbM1L+vVllXke7eS2AaEV/D1qcvxtGZfxNqW9Ka0sECdgjuGZ5kH8T04xr9W9D76ptPb2W3IFOd4PL71OK3b9W7D1MHyLsY+ir7pJZP1apWf9BDDfXy3ANHlseZgSJKsVzo+iF1LliReGf4VicSteajk185Cyv+QpI7xLfsi1ihMJ46ef4WqAqQPmiUfz2Q+2ITEseBNnLy3jeRltP9nJ/JHJHmFdcAeYa7W5qRlBRqEhnWyGC9REouhnVi8+YTEpx5TOnnNZqGyDwGldUj1X7o5xy37Ijm+KmRZo18gQZE+KCaJ0ioVxCBpmttYFrqRdEio6s06ESOSLCxdB/mrANN3rFZgyZOtApCEJN4cpVUQNUkkeB4KLTYLlW5Haf2gl6d2zpi3JZUvURXqvC0IOHrmPUxSFRitQkgHSb/Yx2bubSS3/+p6YbaIEUl2AdgGNjHk5ebUDPgUITxfowjvYTKyUFrFprFMa4qv5rK8WajsbEBZntLL01zmMfuCpYbJNRJkv4M20FPafoxW0aMGSdNQdSA+UKkWH7qhlxUQqqLiRftbyxjyS5lxSQOP5C3lzMV7mFUCYj3NJOmkcymlszDwMjfNQmo59kg61o/ZF41ZtIun7AlaWU4fFMcUKK2yQw+SBuzF6uCuLz90VWXGNL8c/7e20c7Rp7u9jxCQlWMkrcHlMdaazEDiRE2SGszDkHe3WajMM7J/Oa1x9cbsC6pOx0kwGdWcS7gApVUK+iBtGiLVzCQW4K4qkqOkLRob+5nk4fFEYgOydRmqYkyjxBDitA54zc7kmDUPxXZklMfs5lGM1iW9PFG4jNYhpXWa+MMo6Ys6EzGDw7j9OK1y8Am9tXwLeetKdRMprfGb4nCYAcvVCarAI1s7twpikug5TitP+6bfydSCeSjqT3nM5hvRf8OvXlpPRiuVsRmnSKaYREANUKct9vyGcfuxa2Ozy4v7QyTNvDt1Gp6FB6QtMXWboKcOVTlrKySrMpLaWHwMqK8U9y1Ga8RMAEqrNDoZrayOlMcoYwwzab1jqjimmknr78a4P59Op3FwLus+P8/mTOCllHFa+VDIpJV+Odn1WYQnXG+FU6J7V0qrJrJvh95D31lkvT6ZuetUjj0h/XQeQtGtI2Z/M73EJYQOWVkDnP67Zn57suchHbJ+sVnhMIq4MhC8pgP5nFCvNNEjw3hsZOEmpmRCaZmJwIo+D29EzJGAAgw+XfxVyulr+ekqkdEZjy69WB4mfPgQkRXRR6mhmh2CZszp6qVuE7Nbh400pvgpbk3XkkmeZesPkyGRugMDFDXUR4lGxBQOtMDi/p0Qi6kAFmbufp8wXy2rE5uDvdgyFDakSGsSAjlTDSZmSTFpTnTcuM8oJAkpwnxNsvLE3F1io1E/Vlq1A8KEVU2DznFMR3A/0FI1flnRDpqbtxmELGD/VUqhphA7oCbnRiRu04Q5kr85FbL+MzWNa8YmnRYklcYxI1PYANy3X7A3J4lHIMJ7ibQNE/d+wJlXl6zlTBaPCDwDuySW+9s11W/9KAw9L2DwvFDMkWzfpxMnH1WHBQn5RgWxYu4R+XEignT8R9H3b1VPdMZdiEz935l4f/PAoQifM8WbzE4sREQxedAw2TF1wApaJAFHhhDmnkuM0HTmKegtf0+/xk/H3Xq73h277/Pp3eT0zsAx6D4xJO41VZbiw5L21skr/1F6bQ93yp0vXE67qQQ/MB3xzYOEr8KuuM+Qfn8U4cP4/2GilCdsdBqInyWOOYbiaPe/k0hiQEVtn4v/A1q/uTD0WPW7AAAAAElFTkSuQmCC" width="100px" />
+            <div class="news-header">
+                <a href="@urls[0]" target="_blank"> @header.Replace("&quot;", @"""")</a>
+            </div>
+        </div>
+
+        ScrapNews(urls[1], singelNodes[1]);
+        <div class="single-news">
+            <img src="https://upload.wikimedia.org/wikipedia/he/thumb/5/56/N12_website_logo.svg/2560px-N12_website_logo.svg.png" width="150px" />
+            <div class="news-header">
+                <a href="@urls[1]" target="_blank"> @header.Replace("&quot;", @"""")</a>
+            </div>
+        </div>
+
+
+
+
+        ScrapNews(urls[2], singelNodes[2]);
+        <div class="single-news">
+            <img src="https://upload.wikimedia.org/wikipedia/he/thumb/1/17/Reshet13Logo2022.svg/1200px-Reshet13Logo2022.svg.png" width="40px" />
+            <div class="news-header">
+                <a href="@urls[2]" target="_blank"> @header.Replace("&quot;", @"""")</a>
+            </div>
+        </div>
+
+
+
+        ScrapNews(urls[3], singelNodes[3]);
+        <div class="single-news">
+            <img src="https://www.now14.co.il/wp-content/themes/14-child/assets/logo14/14logo-desktop.svg" width="50px" />
+            <div class="news-header">
+                <a href="@urls[3]" target="_blank"> @header.Replace("&quot;", @"""")</a>
+            </div>
+        </div>
+
+
+
+
+    }
+
+
+</div>
