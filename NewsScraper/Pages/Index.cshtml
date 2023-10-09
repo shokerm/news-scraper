@@ -15,7 +15,7 @@
     };
     string[] newsSite = { "Ynet", "N12", "13tv", "Now14", "Kan" };
 
-    string[] singelNodes = { "//h1[@class='slotTitle']", "//p//a", "//h3", "//div[@class='mainTitleRashiSmall']", "//div[@class='article__content-title']" };
+    string[] singelNodes = { "//h1[@class='slotTitle']", "//p//a", "//h3", "//div[contains(@class,'mainTitleRashi')]", "//div[contains(@class,'content-title')]" };
 
     string header = "";
 
@@ -87,9 +87,6 @@
                 <a href="@urls[3]" target="_blank"> @header.Replace("&quot;", @"""")</a>
             </div>
         </div>
-
-
-
 
     }
 
