@@ -10,4 +10,8 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.54" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="assets\" />
+  </ItemGroup>
+
 </Project>
