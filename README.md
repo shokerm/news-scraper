@@ -1,6 +1,6 @@
 # News-Scraper
 - Simple scraper site which enable scraping popular news sites main titles.
-- Built with ASP.Net web application and [HtmlAgilityPack](https://html-agility-pack.net/) package.
+- Built with ASP.Net web application, cshtml and [HtmlAgilityPack](https://html-agility-pack.net/) package.
 
 ## Table of Contents
 - [Installation](#installation)
