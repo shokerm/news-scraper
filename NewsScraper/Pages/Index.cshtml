@@ -11,11 +11,11 @@
 
 @{
     string[] urls = { "https://www.ynet.co.il/home/0,7340,L-8,00.html",
-    "https://www.n12.co.il/","https://13tv.co.il/","https://www.now14.co.il/","https://www.kan.org.il/lobby/news/"
+    "https://www.n12.co.il/","https://13tv.co.il/","https://www.now14.co.il/","https://www.kikar.co.il/"
     };
-    string[] newsSite = { "Ynet", "N12", "13tv", "Now14", "Kan" };
+    string[] newsSite = { "Ynet", "N12", "13tv", "Now14", "Kikar Hashabat" };
 
-    string[] singelNodes = { "//h1[@class='slotTitle']", "//p//a", "//h3", "//div[contains(@class,'mainTitleRashi')]", "//div[contains(@class,'content-title')]" };
+    string[] singelNodes = { "//h1[@class='slotTitle']", "//p//a", "//h3", "//div[contains(@class,'mainTitleRashi')]", "//div//a//h3[contains(@class,'MuiTypography-root')]" };
 
     string header = "";
 
@@ -23,6 +23,7 @@
 
     void ScrapNews(string url, string singleNode)
     {
+        header = "";
         try
         {
             HttpClient httpClient = new HttpClient();
@@ -85,6 +86,15 @@
             <img src="https://www.now14.co.il/wp-content/themes/14-child/assets/logo14/14logo-desktop.svg" width="50px" />
             <div class="news-header">
                 <a href="@urls[3]" target="_blank"> @header.Replace("&quot;", @"""")</a>
+            </div>
+        </div>
+
+
+        ScrapNews(urls[4], singelNodes[4]);
+        <div class="single-news">
+            <img src="https://www.kikar.co.il/assets/images/logo/kikar-logo_512.png" width="50px" />
+            <div class="news-header">
+                <a href="@urls[4]" target="_blank"> @header.Replace("&quot;", @"""")</a>
             </div>
         </div>
 
