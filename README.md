@@ -15,16 +15,16 @@
 - Built with ASP.Net web application, cshtml and [HtmlAgilityPack](https://html-agility-pack.net/) package.
 - While refreshing the news are updated as they in their original news websites.
 - 
-## News-Scraper C# - Table of Contents
+## News-Scraper Csharp - Table of Contents
 - [News-Scraper Csharp Installation](#news-scraper-csharp-installation)
-- [News-Scraper Csharp Interface images](##news-scraper-csharp-interface-images)  
+- [News-Scraper Csharp Interface Images](#news-scraper-csharp-interface-images)  
   
-## News-Scraper C# installation
+## News-Scraper Csharp installation
 In the nuget console:
 ```bash
 nuget install HtmlAgilityPack -OutputDirectory packages
 ```
-# Interface images
+# News-Scraper Csharp Interface Images
 ![image](https://github.com/shokerm/news-scraper/assets/96984377/7523e8d8-507b-40b4-9842-82750f6ccd40)
 
 ![image](https://github.com/shokerm/news-scraper/blob/8ffd52652247c5c0388bf6cea57aeec825e8bb0b/NewsScraper/assets/Untitled.gif)
