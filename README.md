@@ -19,7 +19,7 @@
 - [News-Scraper Csharp Installation](#news-scraper-csharp-installation)
 - [News-Scraper Csharp Interface images](##news-scraper-csharp-interface-images)  
   
-## News-Scraper C# Interface images
+## News-Scraper C# installation
 In the nuget console:
 ```bash
 nuget install HtmlAgilityPack -OutputDirectory packages
