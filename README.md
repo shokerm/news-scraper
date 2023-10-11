@@ -16,10 +16,10 @@
 - While refreshing the news are updated as they in their original news websites.
 - 
 ## News-Scraper C# - Table of Contents
-- [Installation](#installation)
-- [Interface images](#interface-images)  
+- [News-Scraper C# Installation](#news-scraper-c-#-installation)
+- [News-Scraper C# Interface images](##news-scraper-c-#-interface-images)  
   
-## Installation
+## News-Scraper C# Interface images
 In the nuget console:
 ```bash
 nuget install HtmlAgilityPack -OutputDirectory packages
