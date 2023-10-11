@@ -1,11 +1,23 @@
 # News-Scraper
-- Simple scraper site which enable scraping popular news sites main titles.
-- Built with ASP.Net web application, cshtml and [HtmlAgilityPack](https://html-agility-pack.net/) package.
-- While refreshing the news are updated as they in their original news websites.
+- Simple scraper which enable scraping popular news sites main titles.
+
 
 ## Table of Contents
+- [Nodejs scraper](#nodejs-scraper)
+- [C# with ASP.Net web application](#c#-with-asp.net-web-application)
+
+# Nodejs scraper
+
+
+
+
+# C# with ASP.Net web application 
+- Built with ASP.Net web application, cshtml and [HtmlAgilityPack](https://html-agility-pack.net/) package.
+- While refreshing the news are updated as they in their original news websites.
+- 
+## News-Scraper C# - Table of Contents
 - [Installation](#installation)
-- [Interface images](#interface-images)
+- [Interface images](#interface-images)  
   
 ## Installation
 In the nuget console:
