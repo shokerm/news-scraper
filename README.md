@@ -14,13 +14,12 @@
 
 ## News-Scraper Nodejs Installation
 - packeges: axios, cheerio, json2csv.
-- In the nuget console:
+- In the terminal:
 ```bash
 npm install axios cheerio json2csv
 ```
 
 ## News-Scraper Nodejs Interface Images
-
 ![Image](https://github.com/shokerm/news-scraper/blob/master/news-scraper%20-%20C%23/NewsScraper/assets/20231011-185323.gif)
 
 # C# with ASP.Net web application 
