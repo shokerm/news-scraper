@@ -7,6 +7,7 @@
 - [Csharp with ASP Dot Net Web Application](#csharp-with-asp-dot-net-web-application)
 
 # Nodejs scraper
+- scraper which enable scraping news from Ynet and saving them in csv file.
   
 ## News-Scraper Nodejs - Table of Contents
 - [News-Scraper Nodejs Installation](#news-scraper-nodejs-installation)
