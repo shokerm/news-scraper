@@ -7,7 +7,7 @@
 - [C# with ASP.Net web application](#c#-with-asp.net-web-application)
 
 # Nodejs scraper
-
+![Image](https://github.com/shokerm/news-scraper/blob/master/news-scraper%20-%20C%23/NewsScraper/assets/20231011-185323.gif)
 
 
 
