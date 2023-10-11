@@ -4,7 +4,7 @@
 
 ## Table of Contents
 - [Nodejs scraper](#nodejs-scraper)
-- [Csharp with ASP.Net web application](#csharp-with-asp.net-web-application)
+- [Csharp with ASP Dot Net Web Application](#csharp-with-asp-dot-net-web-application)
 
 # Nodejs scraper
   
@@ -22,7 +22,7 @@ npm install axios cheerio json2csv
 ## News-Scraper Nodejs Interface Images
 ![Image](https://github.com/shokerm/news-scraper/blob/master/news-scraper%20-%20C%23/NewsScraper/assets/20231011-185323.gif)
 
-# Csharp with ASP.Net web application 
+# Csharp with ASP Dot Net Web Application 
 - Built with ASP.Net web application, cshtml and [HtmlAgilityPack](https://html-agility-pack.net/) package.
 - While refreshing the news are updated as they in their original news websites.
   
